@@ -11,10 +11,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  * Created by Nadine on 15.11.2016.
+ * Class creates list of Works from JSON-string
  */
 
 public class WorksList {
@@ -28,8 +27,6 @@ public class WorksList {
             try {
                 textView.setVisibility(View.GONE);
                 JSONArray ja = new JSONArray(resJSON);
-
-
                 for (int i = 0; i < ja.length(); i++) {
                     JSONObject jo = (JSONObject) ja.get(i);
                     list.add(new Work(jo.getString("idInd_work"),jo.getString("File"),jo.getString("Status"), jo.getString("Mark"),jo.getString("Completion_date"),jo.getString("FK_Student")));
