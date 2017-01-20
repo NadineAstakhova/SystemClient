@@ -21,6 +21,7 @@ import nadineastakhova.systemclient.R;
 
 /**
  * Created by Nadine on 15.11.2016.
+ * Class is adapts works list to list in view
  */
 
 public class WorksListAdapter extends CustomListAdapter<Work> {
@@ -28,17 +29,7 @@ public class WorksListAdapter extends CustomListAdapter<Work> {
     Activity context;
     List<Work> works;
     private SparseBooleanArray mSelectedItemsIds;
-    /*customButtonListener customListner;
-
-    public interface customButtonListener {
-        public void onButtonClickListner(int position, String value, String name);
-    }
-
-    public void setCustomButtonListner(customButtonListener listener) {
-        this.customListner = listener;
-    }*/
-
-
+  
     public WorksListAdapter(Activity context, int resId, List<Work> works) {
         super(context, resId, works);
         this.mSelectedItemsIds = new SparseBooleanArray();
@@ -51,7 +42,6 @@ public class WorksListAdapter extends CustomListAdapter<Work> {
         TextView statusTxt;
         TextView dateTxt;
         TextView markTxt;
-        //ImageButton img;
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -69,9 +59,6 @@ public class WorksListAdapter extends CustomListAdapter<Work> {
                     .findViewById(R.id.work_date);
             holder.markTxt = (TextView) convertView
                     .findViewById(R.id.work_mark);
-           // holder.img = (ImageButton) convertView.findViewById(R.id.imgb);
-
-
             convertView.setTag(holder);
         } else {
             holder = (WorksListAdapter.ViewHolder) convertView.getTag();
@@ -86,18 +73,6 @@ public class WorksListAdapter extends CustomListAdapter<Work> {
         convertView
                 .setBackgroundColor(mSelectedItemsIds.get(position) ? 0x9934B5E4
                         : Color.TRANSPARENT);
-
-      /*  holder.img.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (customListner != null) {
-                    customListner.onButtonClickListner(position,work.getId(), work.toString());
-                }
-
-            }
-        });*/
-
         return convertView;
     }
 
@@ -113,8 +88,4 @@ public class WorksListAdapter extends CustomListAdapter<Work> {
         works.remove(object);
         notifyDataSetChanged();
     }
-
-
-
-
 }
