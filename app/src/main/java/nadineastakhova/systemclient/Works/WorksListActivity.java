@@ -32,10 +32,10 @@ import nadineastakhova.systemclient.Task.TaskListAdapter;
 
 /**
  * Created by Nadine on 15.11.2016.
+ * Class interacts with the user
  */
 
-public class WorksListActivity extends AppCompatActivity /*implements
-        WorksListAdapter.customButtonListener */{
+public class WorksListActivity extends AppCompatActivity{
 
     private String idTask = "";
     private static String username;
@@ -50,7 +50,7 @@ public class WorksListActivity extends AppCompatActivity /*implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject_list);
-
+        //getting information about foreign keys
         idTask = getIntent().getExtras().getString("idTaskForWorks");
         username = getIntent().getExtras().getString("username");
         password = getIntent().getExtras().getString("password");
@@ -64,18 +64,20 @@ public class WorksListActivity extends AppCompatActivity /*implements
         registerForContextMenu(listView);
         textView = (TextView) findViewById(R.id.textView);
         setListView(this);
-
     }
 
-    boolean flag;
+    boolean flag; //for thread...
     ConnectToServer connect;
 
+    //set list for listview from server
     public void setListView(final WorksListActivity act) {
         flag = false;
         final String enterToWorks = "works/" + idTask;
+        //getting information from server about works
         Runnable runb = new Runnable() {
             @Override
             public void run() {
+                //send request
                 connect = new ConnectToServer(MainActivity.GET, enterToWorks);
                 flag = true;
             }
@@ -83,27 +85,18 @@ public class WorksListActivity extends AppCompatActivity /*implements
 
         Thread thr = new Thread(runb);
         thr.start();
-
         while (!flag) ;
 
+        //set list
         WorksList worksList = new WorksList(connect.getResultJSON(), textView);
-
         final List<Work> works = new ArrayList<Work>(worksList.getList());
-
         mAdapter = new WorksListAdapter(act,
                 R.layout.list_item_work, works);
-       // mAdapter.setCustomButtonListner(WorksListActivity.this);
-
         listView.setAdapter(mAdapter);
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-
-
-            }
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {}
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -114,14 +107,12 @@ public class WorksListActivity extends AppCompatActivity /*implements
                 onListItemSelect(position);
                 return true;
             }
-
         });
     }
 
     private void onListItemSelect(int position) {
         mAdapter.toggleSelection(position);
         boolean hasCheckedItems = mAdapter.getSelectedCount() > 0;
-
         if (hasCheckedItems && mActionMode == null)
             // there are some selected items, start the actionMode
             mActionMode = startSupportActionMode(new ActionBarCallBack());
@@ -136,10 +127,7 @@ public class WorksListActivity extends AppCompatActivity /*implements
             ActionMenuItemView btn = (ActionMenuItemView) findViewById(R.id.Edit);
             btn.setEnabled(false);
         }
-
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -159,21 +147,7 @@ public class WorksListActivity extends AppCompatActivity /*implements
         }
     }
 
-   /* @Override
-    public void onButtonClickListner(int position, String value, String name) {
-        Bundle bundleEdit = new Bundle();
-        bundleEdit.putString("idChangedItem", value);
-        bundleEdit.putString("nameChangedWorkItem",name);
-        ChangeWorkDialogFragment newEditDialog = new ChangeWorkDialogFragment();
-        newEditDialog.setArguments(bundleEdit);
-        newEditDialog.show(getFragmentManager(), "changeInfo");
-        mAdapter.notifyDataSetChanged();
-
-    }*/
-
 private class ActionBarCallBack implements ActionMode.Callback {
-
-
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         // TODO Auto-generated method stub
@@ -210,24 +184,18 @@ private class ActionBarCallBack implements ActionMode.Callback {
             default:
                 return false;
         }
-
     }
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
         mAdapter.removeSelection();
         mActionMode = null;
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        // TODO Auto-generated method stub
         mode.setTitle("CheckBox is Checked");
         return false;
     }
 }
-
-
 }
