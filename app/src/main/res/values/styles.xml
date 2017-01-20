@@ -1,0 +1,25 @@
+<resources>
+    <style name="GradientLight" parent="@android:style/Theme.Light">
+
+        <item name="android:progressBarStyle">@color/colorPrimary</item>
+
+        <item name="android:listViewStyle">@style/listView</item>
+        <item name="android:itemBackground">@color/colorPrimary</item>
+        <item name="android:spinnerStyle">@color/colorAccent</item>
+    </style>
+    <style name="listView" parent="@android:style/Widget.ListView.White">
+        <item name="android:background">@color/colorAccent</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listViewStyle">@style/listView</item>
+
+
+    </style>
+
+
+</resources>

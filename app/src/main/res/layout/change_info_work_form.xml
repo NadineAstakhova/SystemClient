@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/nameWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="10pt"
+        android:layout_marginLeft="4pt"
+        android:layout_marginTop="6pt"
+        android:layout_marginBottom="5pt"/>
+
+    <TextView
+        android:id="@+id/statusWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="9pt"
+        android:layout_marginLeft="4pt"
+        android:text="@string/enter_status"/>
+    <Spinner
+        android:id="@+id/newStatus"
+        android:layout_width="match_parent"
+        android:layout_height="22pt" />
+    <TextView
+        android:id="@+id/markWork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="9pt"
+        android:layout_marginLeft="4pt"
+        android:text="@string/enter_mark"/>
+    <EditText
+        android:id="@+id/newMark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_marginLeft="2pt"
+        android:textSize="8pt" />
+    <TextView
+        android:id="@+id/errMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:textSize="6pt"
+        android:layout_marginLeft="4pt" />
+
+</LinearLayout>

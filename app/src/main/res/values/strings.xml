@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SystemClient</string>
+    <string name="enter_mark">Enter mark</string>
+    <string name="enter_status">Enter status</string>
+    <string name="server_not_found">Server not found</string>
+
+</resources>

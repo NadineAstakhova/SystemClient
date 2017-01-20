@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "937063710924",
+    "firebase_url": "https://systemclient-150412.firebaseio.com",
+    "project_id": "systemclient-150412",
+    "storage_bucket": "systemclient-150412.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937063710924:android:81e7ad4af5585ecc",
+        "android_client_info": {
+          "package_name": "nadineastakhova.systemclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937063710924-14v3kpin2k9e69c564nmprdckk1va795.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmSP0CKdPdDZ9WmVIh6bQLHgi-aRfrgPI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
