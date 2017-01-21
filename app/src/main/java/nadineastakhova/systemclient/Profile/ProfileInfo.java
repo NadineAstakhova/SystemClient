@@ -12,6 +12,7 @@ import io.socket.emitter.Emitter;
 
 /**
  * Created by Nadine on 17.11.2016.
+ * Class describes a user
  */
 
 public class ProfileInfo {
@@ -24,9 +25,8 @@ public class ProfileInfo {
     private io.socket.client.Socket socket;
     String id;
 
+    //getting info from JSON-string
     public ProfileInfo(String resJSON){
-
-
         if (resJSON != null) {
             try {
                 JSONArray info = new JSONArray(resJSON);
