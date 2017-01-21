@@ -59,20 +59,19 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         username = getIntent().getExtras().getString("username");
         password = getIntent().getExtras().getString("password");
-
-        //String login = "Not found";
-       final String login = "users/" + username + "/" + password;
+        
+        final String login = "users/" + username + "/" + password;
        // final String login = "users/albus/12345678";
-
         ActionBar actionBar = getSupportActionBar();
         flag = false;
 
+        //send to server information about user
         Runnable runnable = new Runnable() {
             public void run() {
+                //if user wasn't found server send answere "user not found"
                 connect = new ConnectToServer(handler, MainActivity.GET, login);
                 flag = true;
                 isSuc = connect.getIsSuc();
-
             }
         };
         Thread thread = new Thread(runnable);
@@ -89,6 +88,7 @@ public class ProfileActivity extends AppCompatActivity {
         idUsers += id;
     }
 
+    //on click Group Button
     public void onClick(View view) {
         Intent intent = new Intent(ProfileActivity.this, GroupsListActivity.class);
         intent.putExtra("idProf", user.getIdProf());
@@ -97,6 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //show information about user
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -116,7 +117,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
     };
-
+    //on click Subject Button
     public void onClickSubjectButton(View view) {
         Intent intent = new Intent(ProfileActivity.this, SubjectListActivity.class);
         intent.putExtra("idProf", user.getIdProf());
@@ -133,6 +134,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    //on click Exit open main activity
     public void onClickExitButton(View view) {
         socket.emit("disconnectUser", user.getIdProf());
         user = null;
@@ -141,6 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //for getting push message
     public void connectSocket(){
         try {
             socket = IO.socket("http://192.168.43.64:8000");
@@ -156,9 +159,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void call(Object... args) {
                 System.out.println("SocketIO Connected");
-
                 socket.emit("idUser", user.getIdProf());
-
             }
         }).on("socketID", new Emitter.Listener() {
             @Override
@@ -173,12 +174,12 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         })
+        //when there is new work (works) for user
         .on("newMess", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 JSONObject data = (JSONObject) args[0];
                 try {
-                   // id = data.getString("id");
                     message = data.getString("message");
                     idDelMess = data.getString("idDel");
                     Log.d("SocketIO", "New mess"  +" "+ message +" "+idDelMess);
@@ -187,7 +188,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Resources res = context.getResources();
                     int notifyID = 1;
 
-                   // Intent notificationIntent = new Intent(context, ProfileActivity.class);
+                    //creating push message
                     Intent notificationIntent = new Intent();
                     PendingIntent contentIntent = PendingIntent.getActivity(context,
                             0, notificationIntent,
@@ -199,7 +200,7 @@ public class ProfileActivity extends AppCompatActivity {
                             .setLargeIcon(BitmapFactory.decodeResource(res,R.drawable.notif))
                             .setColor(Color.WHITE)
                             .setContentTitle("New work")
-                            .setContentText(message)// Текст уведомления
+                            .setContentText(message)//Text in message
                             .setPriority(NotificationCompat.PRIORITY_HIGH);
                     Notification notification = builder.build();
 
