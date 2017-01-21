@@ -6,4 +6,4 @@ This is Android-client for Server (at folder "Server"). Server connects to datab
 <hr>
 For example, activity screen when user receives a push message
 <p>
-<style> .p {text-align: center;}</style> ![Image alt](https://github.com/NadineAstakhova/SystemClient/raw/master/push_message.jpg)
+![Image alt](https://github.com/NadineAstakhova/SystemClient/raw/master/push_message.jpg)
