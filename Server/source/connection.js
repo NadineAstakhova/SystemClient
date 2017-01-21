@@ -1,5 +1,5 @@
 var mysql = require('mysql');
- 
+//connect ti database. for now to local database
 function Connection() {
   this.pool = null;
  
