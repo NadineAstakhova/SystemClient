@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Runnable runnable = new Runnable() {
+            //request to server
                 public void run() {
                     ConnectToServer connect = new ConnectToServer(handler, GET, "api");
                     isSuc = connect.getIsSuc();
@@ -63,10 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClick(View view) {
+        //if server works
         System.out.println(isSuc);
         if (isSuc) {
             EditText loginText = (EditText) findViewById(R.id.enterText);
             EditText passText = (EditText) findViewById(R.id.passText);
+            //if fields are empty
             if (loginText.getText().toString().length() < 1 || passText.getText().toString().length() < 1) {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Write your login and password, please", Toast.LENGTH_SHORT);
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
+        //if server doesn't work
         else{
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Sorry, server doesn't work. Try later, please.", Toast.LENGTH_SHORT);
