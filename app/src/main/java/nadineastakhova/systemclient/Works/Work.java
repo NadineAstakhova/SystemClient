@@ -10,6 +10,7 @@ import nadineastakhova.systemclient.MainActivity;
 
 /**
  * Created by Nadine on 15.11.2016.
+ * Work Class
  */
 
 public class Work {
@@ -36,13 +37,13 @@ public class Work {
         this.fileName = fileName;
         this.status = status;
         this.mark = mark;
+        //Completion date of work
         DateFormat format = new SimpleDateFormat( "yyyy-MM-dd");
         try {
             this.comp_date = format.parse(comp_date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         this.fk_Student = fk_Student;
     }
 
@@ -58,13 +59,12 @@ public class Work {
         return this.status;
     }
 
+    //Get completion date
     public String getComp_date(){
         int d = this.comp_date.getDate() + 1;
         Date t = (Date)(this.comp_date.clone());
         t.setDate(d);
-
         return new SimpleDateFormat("dd-MM-yyyy").format(t);
-
     }
 
     @Override
@@ -74,12 +74,14 @@ public class Work {
         return  str;
     }
 
+    //edit info in database with server help
     public boolean editInfo(String id,  String status, String mark)
     {
         final String editWork = "work/edit/" +  id + "/" + status + "/" + mark;
         flag = false;
         Runnable runnable = new Runnable() {
             public void run() {
+                //request to server
                 ConnectToServer connect = new ConnectToServer(MainActivity.POST, editWork);
                 flag = true;
             }
@@ -91,5 +93,4 @@ public class Work {
         while (!flag);
         return true;
     }
-
 }
