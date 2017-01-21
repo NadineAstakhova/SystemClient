@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by Nadine on 07.11.2016.
+ * Parent class for other ListAdapter in project
  */
 
 public class CustomListAdapter<Object>  extends ArrayAdapter<Object> {
@@ -21,13 +22,11 @@ public class CustomListAdapter<Object>  extends ArrayAdapter<Object> {
 
     private SparseBooleanArray mSelectedItemsIds;
 
-
     public CustomListAdapter(Activity context, int resId, List<Object> objects) {
         super(context, resId, objects);
         this.mSelectedItemsIds = new SparseBooleanArray();
         this.context = context;
     }
-
 
     public void toggleSelection(int position) {
         selectView(position, !mSelectedItemsIds.get(position));
@@ -38,7 +37,6 @@ public class CustomListAdapter<Object>  extends ArrayAdapter<Object> {
             mSelectedItemsIds.put(position, value);
         else
             mSelectedItemsIds.delete(position);
-
         notifyDataSetChanged();
     }
 
@@ -48,7 +46,6 @@ public class CustomListAdapter<Object>  extends ArrayAdapter<Object> {
 
     public int getSelectedCount() {
         System.out.println(mSelectedItemsIds.size());
-
         return mSelectedItemsIds.size();
     }
 
