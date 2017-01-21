@@ -4,4 +4,5 @@ This is Android-client for Server (at folder "Server"). Server connects to datab
 <p>Only registered users can use this client. Those users are professors (for now). They see information about groups, their subjects, tasks and works of students. They can update, add or delete data. Also they can receive push message about new works for their subjects.
 <p>Future plans include revision of the application, add adding functionality and other users (students). 
 <hr>
-Some screens
+For example, activity screen when user receives a push message
+![Image alt](https://github.com/NadineAstakhova/SystemClient/raw/master/push_message.jpg)
