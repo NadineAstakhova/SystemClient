@@ -5,4 +5,5 @@ This is Android-client for Server (at folder "Server"). Server connects to datab
 <p>Future plans include revision of the application, add adding functionality and other users (students). 
 <hr>
 For example, activity screen when user receives a push message
-![Image alt](https://github.com/NadineAstakhova/SystemClient/raw/master/push_message.jpg)
+<p>
+<style> .p {text-align: center;}</style> ![Image alt](https://github.com/NadineAstakhova/SystemClient/raw/master/push_message.jpg)
