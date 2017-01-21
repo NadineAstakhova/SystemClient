@@ -21,10 +21,12 @@ import nadineastakhova.systemclient.Subject.Subject;
 
 /**
  * Created by Nadine on 13.10.2016.
+ * In this class we connect to server
  */
 
 public class ConnectToServer {
 
+    //local ip...
     final String ipserver = "192.168.43.64";
 
     String resultJSON = "";
@@ -40,6 +42,7 @@ public class ConnectToServer {
                 this.isSuc = false;
 
                 try {
+                    //local server..
                     url = new URL("http://"+ipserver+":8000/"+param);
                     conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod(request);
@@ -80,6 +83,7 @@ public class ConnectToServer {
                 resultJSON += result;
             }
 
+    //connect to server without handler
     public ConnectToServer(String request, String param){
         URL url;
         HttpURLConnection conn;
