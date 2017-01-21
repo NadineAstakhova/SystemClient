@@ -25,9 +25,8 @@ import nadineastakhova.systemclient.R;
 
 /**
  * Created by Nadine on 16.11.2016.
+ * Class for dialog window
  */
-
-
 
 public class ChangeWorkDialogFragment extends DialogFragment implements
         DialogInterface.OnClickListener  {
@@ -52,7 +51,6 @@ public class ChangeWorkDialogFragment extends DialogFragment implements
                 .inflate(R.layout.change_info_work_form, null);
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             idChangedItem =  bundle.getString("idChangedItem");
@@ -75,9 +73,9 @@ public class ChangeWorkDialogFragment extends DialogFragment implements
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
+                                          int count, int after) {}
 
+            //for dynamic input check 
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
@@ -87,7 +85,6 @@ public class ChangeWorkDialogFragment extends DialogFragment implements
                     if(num < 0 || num > 100) {
                         textErr.setText("Must be less than 101");
                         flag = false;
-
                     }
                     else {
                         textErr.setText("");
@@ -97,17 +94,15 @@ public class ChangeWorkDialogFragment extends DialogFragment implements
             }
         });
 
-
         return(builder.setTitle("Change information").setView(form)
                 .setPositiveButton(android.R.string.ok, this)
                 .setNegativeButton(android.R.string.cancel, null).create());
     }
 
+    //when user click on OK button
     @Override
     public void onClick(DialogInterface dialog, int which) throws IllegalFormatException {
-
         try {
-
             String selectedStatus = spinner.getSelectedItem().toString();
 
             String newMark = newMarkBox.getText().toString();
@@ -116,8 +111,8 @@ public class ChangeWorkDialogFragment extends DialogFragment implements
                 throw new NullPointerException("No data");
             }
             else {
-
                 Work changedWork = new Work();
+                //edit info in database from Work Class
                 changedWork.editInfo(idChangedItem, selectedStatus, newMark);
 
                 WorksListActivity act = (WorksListActivity) getActivity();
